@@ -61,22 +61,25 @@ const container = document.getElementById("container")
 
 // CICLO L'ARRAY DI OGGETTI POSTS CON IL METODO FOR EACH//
 posts.forEach((el) => {
+// DESTRUTTURO GLI OGGETTI PER OTTIMIZZARE IL CODICE//
+let {id, content, media, author, likes, created} = el
+let {name, image} = author
 
     container.innerHTML += `<div class="post">
     <div class="post__header">
         <div class="post-meta">                    
             <div class="post-meta__icon">
-                <img class="profile-pic" src= "${el.author.image}"alt="${el.author.name}">                    
+                <img class="profile-pic" src= "${image}"alt="${name}">                    
             </div>
             <div class="post-meta__data">
-                <div class="post-meta__author">${el.author.name}</div>
+                <div class="post-meta__author">${name}</div>
                 <div class="post-meta__time">4 mesi fa</div>
             </div>                    
         </div>
     </div>
-    <div class="post__text">${el.content}</div>
+    <div class="post__text">${content}</div>
     <div class="post__image">
-        <img src="${el.media}" alt="">
+        <img src="${media}" alt="">
     </div>
     <div class="post__footer">
         <div class="likes js-likes">
@@ -87,7 +90,7 @@ posts.forEach((el) => {
                 </a>
             </div>
             <div class="likes__counter">
-                Piace a <b id="like-counter-1" class="js-likes-counter">${el.likes}</b> persone
+                Piace a <b id="like-counter-1" class="js-likes-counter">${likes}</b> persone
             </div>
         </div> 
     </div>            
