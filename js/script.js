@@ -98,3 +98,7 @@ let {name, image} = author
 `
 
 })
+
+// DICHIARO LA COSTANTE DEL LIKE RECUPERANDO LA CLASSE "like-button" //
+
+const like_button = document.querySelector(".like-button")
