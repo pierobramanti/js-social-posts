@@ -109,5 +109,7 @@ const counter = document.querySelectorAll(".js-likes-counter")
 let arr = []
 
 like_button.forEach((el) => {
-
+    el.addEventListener("click", function() {
+        el.classList.add("like-button--liked")
+    })
 })
