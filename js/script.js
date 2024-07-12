@@ -55,3 +55,6 @@ const posts = [
         "created": "2021-03-05"
     }
 ];
+
+// DICHIARO LA COSTANTE CONTAINER RICHIAMANDO L'ELEMENTO DA HTML//
+const container = document.getElementById("container")
