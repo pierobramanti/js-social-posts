@@ -61,46 +61,43 @@ const container = document.getElementById("container")
 
 // CICLO L'ARRAY DI OGGETTI POSTS CON IL METODO FOR EACH//
 posts.forEach((el) => {
-// DESTRUTTURO GLI OGGETTI PER OTTIMIZZARE IL CODICE//
-let {id, content, media, author, likes, created} = el
-let {name, image} = author
+    // DESTRUTTURO GLI OGGETTI PER OTTIMIZZARE IL CODICE//
+    let {id, content, media, author, likes, created} = el
+    let {name, image} = author
 
     container.innerHTML += `<div class="post">
-    <div class="post__header">
-        <div class="post-meta">                    
-            <div class="post-meta__icon">
-                <img class="profile-pic" src= "${image}"alt="${name}">                    
+        <div class="post__header">
+            <div class="post-meta">                    
+                <div class="post-meta__icon">
+                    <img class="profile-pic" src= "${image}" alt="${name}">                    
+                </div>
+                <div class="post-meta__data">
+                    <div class="post-meta__author">${name}</div>
+                    <div class="post-meta__time">4 mesi fa</div>
+                </div>                    
             </div>
-            <div class="post-meta__data">
-                <div class="post-meta__author">${name}</div>
-                <div class="post-meta__time">4 mesi fa</div>
-            </div>                    
         </div>
-    </div>
-    <div class="post__text">${content}</div>
-    <div class="post__image">
-        <img src="${media}" alt="">
-    </div>
-    <div class="post__footer">
-        <div class="likes js-likes">
-            <div class="likes__cta">
-                <a class="like-button  js-like-button" href="#${id}" data-postid="${id}">
-                    <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
-                    <span class="like-button__label">Mi Piace</span>
-                </a>
-            </div>
-            <div class="likes__counter">
-                Piace a <b id="like-counter-${id}" class="js-likes-counter">${likes}</b> persone
-            </div>
-        </div> 
-    </div>            
-</div>
-`
-
+        <div class="post__text">${content}</div>
+        <div class="post__image">
+            <img src="${media}" alt="">
+        </div>
+        <div class="post__footer">
+            <div class="likes js-likes">
+                <div class="likes__cta">
+                    <a class="like-button js-like-button" href="#${id}" data-postid="${id}">
+                        <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
+                        <span class="like-button__label">Mi Piace</span>
+                    </a>
+                </div>
+                <div class="likes__counter">
+                    Piace a <b id="like-counter-${id}" class="js-likes-counter">${likes}</b> persone
+                </div>
+            </div> 
+        </div>            
+    </div>`
 })
 
 // DICHIARO LA COSTANTE DEL LIKE RECUPERANDO LA CLASSE "like-button" //
-
 const like_button = document.querySelectorAll(".like-button")
 
 // DICHIARO LA COSTANTE COUNTER RECUPERANDO LA CLASSE "js-likes-counter" //
@@ -108,8 +105,17 @@ const counter = document.querySelectorAll(".js-likes-counter")
 
 let arr = []
 
+
+// INTEGRO NELLA FUNZIONE L'AUMENTO DEL COUNTER //
 like_button.forEach((el) => {
-    el.addEventListener("click", function() {
-        el.classList.add("like-button--liked")
-    })
+    el.addEventListener("click", () => {
+            const data_id = el.getAttribute("data-postid");
+            console.log(data_id);
+            const counter = document.getElementById(`like-counter-${data_id}`);
+            if (!arr.includes(data_id)) {
+                arr.push(data_id);
+                counter.innerText = parseInt(counter.innerText) + 1;
+                el.classList.add("like-button--liked");
+            }
+        })
 })
